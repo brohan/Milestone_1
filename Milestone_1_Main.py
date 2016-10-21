@@ -44,6 +44,7 @@ def take_turn(which_player,moves_made):
 
 
 def make_move(move,player_turn):
+    #Make sure we update the board subbing player sign for spot number
 
     return(player_turn)
 
@@ -59,6 +60,7 @@ print_board(board)
 while True:
     move = take_turn(player_turn,moves_made)
     #win_test = make_move(move,player_turn)
+    #Check if player won (compare board to winning solutions)
     #moves_made.append(move)
 
 '''
