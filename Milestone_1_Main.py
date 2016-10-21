@@ -15,6 +15,7 @@ def move_map(board):
             map[key] = next((i, position.index(key))
                             for i, position in enumerate(board)
                             if key in position) #If this gives errors check indentation
+    return map
 
 
 def print_board(board):
@@ -25,7 +26,7 @@ def print_board(board):
     print('\n')
 
 def take_turn(which_player,moves_made):
-    move = input("Enter 'quit' to exit game \nTo move, choose spot to play (1-9).\nPlayer {}, you're up: ".format(which_player))
+    move = input("To move, choose spot to play (1-9).\nEnter 'quit' to exit game \nPlayer 1 = X, Player 2 = O\nPlayer {}, you're up: ".format(which_player))
     if move in ['1','2','3','4','5','6','7','8','9']:
         move = int(move)
         if move in moves_made:
@@ -44,10 +45,18 @@ def take_turn(which_player,moves_made):
 
 
 def make_move(move,player_turn):
-    #Make sure we update the board subbing player sign for spot number
+    position = map.get(move)
+    if player_turn == 1:
+        board[position[0]][position[1]]='X'
+    else:
+        board[position[0]][position[1]] = 'O'
+
+    if player_turn == 1:
+        player_turn = 2
+    else:
+        player_turn = 1
 
     return(player_turn)
-
 
 
 player_turn = 1
@@ -59,13 +68,13 @@ print('Welcome to the classic game of Tic Tac Toe \n')
 print_board(board)
 while True:
     move = take_turn(player_turn,moves_made)
-    #win_test = make_move(move,player_turn)
+    player_turn = make_move(move,player_turn)
+    print_board(board)
     #Check if player won (compare board to winning solutions)
-    #moves_made.append(move)
+    moves_made.append(move)
 
 '''
-To Do:
-Create something that contains all possible ways to win for either player:
+Create something that contains all possible ways to win for either player, compares it to board after move:
 0,0 0,1 0,2
 1,0 1,1 1,2
 2,0 2,1 2,2
@@ -83,11 +92,5 @@ or:
 3,6,9
 1,5,9
 7,5,3
-Function to make move:
-    After checking move hasn't been made before
-        If has been made, state so, take input and pass thru verify function
-    Make move
-    Checks if player has won
-    Changes global player variable
-make sure board update takes into account and updates the player
+
 '''
