@@ -58,6 +58,8 @@ def make_move(move,player_turn):
 
     return(player_turn)
 
+# NEED TO CLEAN UP THIS FUNCTION!!
+
 def winner_test(player_turn,previous_player):
     if player_turn == 1:
         test = 'O'
