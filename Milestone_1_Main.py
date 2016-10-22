@@ -58,6 +58,39 @@ def make_move(move,player_turn):
 
     return(player_turn)
 
+def winner_test(player_turn,previous_player):
+    if player_turn == 1:
+        test = 'O'
+    else:
+        test = 'X'
+    test = test*3
+
+    if test == str(board[0][0])+ str(board[0][1]) + str(board[0][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[1][0])+ str(board[1][1]) + str(board[1][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[2][0])+ str(board[2][1]) + str(board[2][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[0][0])+ str(board[1][0]) + str(board[2][0]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[0][1])+ str(board[1][1]) + str(board[2][1]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[0][2])+ str(board[1][2]) + str(board[2][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[0][0])+ str(board[1][1]) + str(board[2][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+    elif test == str(board[2][0])+ str(board[1][1]) + str(board[0][2]):
+        print('Player {} is the winner!!'.format(previous_player))
+        quit()
+
+
 
 player_turn = 1
 board = [[1,2,3],[4,5,6],[7,8,9]]
@@ -68,29 +101,9 @@ print('Welcome to the classic game of Tic Tac Toe \n')
 print_board(board)
 while True:
     move = take_turn(player_turn,moves_made)
+    previous_player = player_turn
     player_turn = make_move(move,player_turn)
+    clearscreen()
     print_board(board)
-    #Check if player won (compare board to winning solutions)
+    winner_test(player_turn,previous_player)
     moves_made.append(move)
-
-'''
-Create something that contains all possible ways to win for either player, compares it to board after move:
-0,0 0,1 0,2
-1,0 1,1 1,2
-2,0 2,1 2,2
-0,0 1,0 2,0
-0,1, 1,1 2,1
-0,2 1,2 2,2
-0,0 1,1 2,2
-2,0 1,1 0,2
-or:
-1,2,3
-4,5,6
-7,8,9
-1,4,7
-2,5,8
-3,6,9
-1,5,9
-7,5,3
-
-'''
