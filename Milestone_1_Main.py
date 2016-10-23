@@ -3,17 +3,17 @@ import os
 
 
 def move_map(board):
-    map = {}
+    board_map = {}
     for row in board:
         for column in row:
-            map.update({column: 0})
+            board_map.update({column: 0})
 
     for i in range(1, 9):
-        for key in map:
-            map[key] = next((i, position.index(key))
+        for key in board_map:
+            board_map[key] = next((i, position.index(key))
                             for i, position in enumerate(board)
                             if key in position) #If this gives errors check indentation
-    return map
+    return board_map
 
 
 def print_board(board):
