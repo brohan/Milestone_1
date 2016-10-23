@@ -1,8 +1,6 @@
 #! /usr/bin/python3
+import os
 
-
-def clearscreen():
-    print("\n" * 100)
 
 def move_map(board):
     map = {}
@@ -19,6 +17,7 @@ def move_map(board):
 
 
 def print_board(board):
+    #board = [[1,2,3],[4,5,6],[7,8,9]]
     for row in board:
         for column in row:
             print(column, end='')
@@ -30,7 +29,7 @@ def take_turn(which_player,moves_made):
     if move in ['1','2','3','4','5','6','7','8','9']:
         move = int(move)
         if move in moves_made:
-            clearscreen()
+            os.system('clear')
             print_board(board)
             print('    That move has already been made, try again!')
             return take_turn(which_player, moves_made)
@@ -38,7 +37,7 @@ def take_turn(which_player,moves_made):
     elif move == "quit":
         quit()
     else:
-        clearscreen()
+        os.system('clear')
         print_board(board)
         print('    !!!!Not a valid input, try again!!!!')
         return take_turn(which_player,moves_made)
@@ -96,7 +95,7 @@ def winner_test(player_turn,previous_player):
 
 player_turn = 1
 board = [[1,2,3],[4,5,6],[7,8,9]]
-clearscreen()
+os.system('clear')
 moves_made = []
 map = move_map(board)
 print('Welcome to the classic game of Tic Tac Toe \n')
@@ -105,7 +104,7 @@ while True:
     move = take_turn(player_turn,moves_made)
     previous_player = player_turn
     player_turn = make_move(move,player_turn)
-    clearscreen()
+    os.system('clear')
     print_board(board)
     winner_test(player_turn,previous_player)
     moves_made.append(move)
